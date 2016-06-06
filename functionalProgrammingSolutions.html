@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="utf-8">
+     <title>Functional Programming</title>
+</head>
+
+<script>
+// ## Positive Numbers
+//
+// Write a function which takes an array of numbers as input and returns a new array containing only the positive numbers in the given array.
+
+var vector = [1, -1, 2, -2, 3, -3, 4, 100];
+
+console.log('vector = ' + vector);
+var onlyPostiveNumbers = function(someVector){
+     return someVector.filter(function(x){return x >= 0;});
+};
+
+positives = onlyPostiveNumbers(vector);
+console.log('positives = ' + positives);
+
+// ## Square the Numbers
+//
+// Write a function which takes an array of numbers as input and returns a new array containing result of squaring each of the numbers in the given array by two. Example: `squareTheNumbers([1, 2, 3])` should give `[1, 4, 9]`.
+
+var theSquares = function(someVector){
+     return someVector.map(function(x){return x*x;});
+};
+
+var squares = theSquares(vector);
+console.log('squares = ' + squares);
+
+// Print out 'Good Job, {{name}}!' for each person's name, one on a line. Hint: You can use "\n" as the newline character and array's `join()` method to put together an array of strings.
+
+var people = [
+  'Sandhya',
+  'Dave',
+  'Carolyn',
+  'DeeAnn',
+  'Allen',
+  'Anthony',
+  'Kyle',
+  'Shanda',
+  'Cody',
+  'Tim',
+  'Regan',
+  'Matt',
+  'Andrew'
+];
+
+var printListOfNames = function(list){
+     var theList = list.map(function(x){return 'Hello ' + x + ',' + x + '!';});
+     return theList.join('\n');
+};
+
+myList = printListOfNames(people);
+console.log('list of names = ' + myList);
+
+// ## All A names
+//
+// Write a function that takes the array of the student names from the last problem and returns only an array of the students whose names start with an "A".
+
+var namesStartingWithA = function(list){
+     return list.filter(function(x){ return x[0]==='A';});
+};
+
+var listOfA = namesStartingWithA(people);
+console.log('list of names staring with A ' + listOfA);
+
+// Given an array of catalog items:
+//
+// 1. Write a function that takes the array and returns a new array containing the individual prices of each item. With the above array you should get [15.99, 8.99, 2.99, 3.99]
+// 2. Write a function that task the array and returns only the items with a price over 10 dollars.
+// 3. Write a function that takes the array and returns a new array containing the total cost of each item by multiplying the item price by the quantity. For example, the above array should yield: [31.98, 8.99, 2.99, 39.9]
+
+var items = [
+  { name: 'Basketball', price: 15.99, quantity: 2 },
+  { name: 'Pump', price: 8.99, quantity: 1 },
+  { name: 'Whistle', price: 2.99, quantity: 1 },
+  { name: 'Cones', price: 3.99, quantity: 10 },
+];
+
+var individualPrices = function(itemList){
+     return itemList.map(function(x){return x.price});
+};
+var prices = individualPrices(items);
+
+console.log('prices = ' + prices)
+
+var pricesOverTen = function overTen(priceList){
+     return listOverTen = priceList.filter(function(x){
+          return x > 10;
+     });
+};
+console.log('prices over ten dollars = ' + pricesOverTen(individualPrices(items)));
+
+var extendedPrice = function(list){
+     return list.map(function(x){return x.price * x.quantity});
+};
+
+var extendedPriceList = extendedPrice(items);
+console.log('extended list = ' + extendedPriceList);
+// ## Sum the array
+//
+// Write a function that takes an array of numbers and returns the sum of the numbers.
+
+var sumTheNums = function(vector) {
+     return vector.reduce(function(x, y){return x + y;}, 0);
+};
+
+var sums = sumTheNums(vector);
+console.log('vector = ' + vector);
+console.log('theSums = ' + sumTheNums(vector));
+
+// ## Get the largest number
+//
+// Write a function that takes an array of numbers and returns the largest number in the array. You may assume all numbers are positive.
+
+vectorPositiveOnly = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100];
+var maxValue = function(vec){
+     return vec.reduce(function(x, y){return (x > y) ? x : y }, 0);
+};
+
+var theMax = maxValue(vectorPositiveOnly);
+console.log('max value = ' + theMax);
+
+// ## Total Cost
+//
+// Take an array of catalog items as in the "Costs" problem. Calculate the total cost of all the items by multiplying each item's price and quantity and the summing the results.
+
+var totalCost = function(theList){
+     return theList.map(function(x){return x.price * x.quantity;}).reduce(function(x, y){return x + y;}, 0);
+};
+console.log('total cost = ' + totalCost(items));
+
+// ## Sum array of arrays
+// Write a function that takes an array of arrays of numbers and returns the sum of all the numbers within them.
+
+var arr = [
+  [1, 2, 3],
+  [4, 5],
+  [6, 7]
+];
+
+var matrixSum = function(someMatrix){
+     /* first, write a function that returns the sum of a one-dimensional array.  the output we want for arr defined above will be [6, 9, 13] */
+     function vecSum(aVector){
+          return aVector.reduce(function(x, y){return x+y}, 0);
+     };
+     return vecSum(someMatrix.map(vecSum));
+};
+
+var bigSum = matrixSum(arr);
+console.log('big sum = ' + bigSum);
+
+// Write a function which, given an array of numbers, returns true if all the numbers in the array are positive, and returns false otherwise. Implement this function in 2 different ways: first using .every() and then using .some()
+
+var vector = [1, 2, -3, 4, 5];
+console.log('vector = ' + vector);
+
+var allPositive1 = function(someVector){
+     return someVector.every(function(x){ return x > 0});
+};
+
+console.log('allPositive1 = ' + allPositive1(vector));
+
+var allPositive2 = function(someVector){
+     return !someVector.some(function(x){ return x < 0});
+};
+
+console.log('allPositive2 = ' + allPositive2(vector));
+debugger;
+</script>
+
+<body>
+     <h1>Functional Programming Exercises</h1>
+     <h4>Results are shown in the console.</h4>
+</body>
+</html>
